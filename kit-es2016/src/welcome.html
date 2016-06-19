@@ -1,0 +1,23 @@
+    
+<template>
+  <section>
+    <h2>${heading}</h2>
+    
+      <div>
+        <span repeat.for="state of states">${state}</span>
+        <p style="color:red">${currentNumber}</p>
+      </div>
+
+    <button repeat.for="number of numbers" 
+      click.trigger="addNumber(number)">${number}</button>
+
+      <br/>
+
+    <button repeat.for="operator of operators"
+       click.trigger="pushState(operator.key)">${operator.key}</button>
+    <button click.trigger="calculate()">=</button></br>
+    
+  </section>
+</template>
+
+  

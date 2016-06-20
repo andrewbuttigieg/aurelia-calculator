@@ -7,11 +7,6 @@ export class Welcome {
   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   currentNumber = 0;
   states = [];
- /* operators = [
-      {key: '*', operation: function(a, b) { return a * b}},
-      {key: '/', operation: function(a, b) { return a / b}},
-      {key: '-', operation: function(a, b) { return a - b}},
-      {key: '+', operation: function(a, b) { return a + b}}];*/
 
   operatorIterator =  function(ops){
     var index = 0;
@@ -21,9 +16,9 @@ export class Welcome {
     }
   };
 
-  constructor(dep) {
-    this.dep = dep;
-    this.operators = dep.makeOpeators();
+  constructor(operatorsFactory) {
+    this.operatorsFactory = operatorsFactory;
+    this.operators = operatorsFactory.makeOpeators();
   }
   
   addNumber(i){

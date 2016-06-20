@@ -35,9 +35,9 @@ export class Welcome {
 
     this.pushState('=');
     this.currentNumber = '';
-    var workingStack = [];
-    var operatorIterator = this.operatorIterator(this.operators);
-    var currentOperation = operatorIterator();
+
+    var nextOperator = this.operatorIterator(this.operators);
+    var currentOperation = nextOperator();
     
     do
     {
@@ -45,7 +45,7 @@ export class Welcome {
       while (this.states.length > i){
         if (this.states[i] == currentOperation.key)
         {
-          workingStack = [];
+          var workingStack = [];
           for (var j = 0 ; j < i - 1; j ++)
             workingStack.push(this.states[j]);
 
@@ -60,10 +60,10 @@ export class Welcome {
         }
         i = i + 2;
       }
-      currentOperation = operatorIterator();
+      currentOperation = nextOperator();
     } while(currentOperation !== undefined);
 
-    this.currentNumber = workingStack[0];
+    this.currentNumber = this.states[0];
     this.states = [];
   }
 }

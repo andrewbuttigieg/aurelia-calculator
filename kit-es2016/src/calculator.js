@@ -1,14 +1,18 @@
-    
+import {inject} from 'aurelia-framework';
+import {OperatorsFactory} from './operators';
+
+@inject(OperatorsFactory)
 export class Welcome {
   heading = 'Welcome to the Aurelia calculator';
   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   currentNumber = 0;
   states = [];
-  operators = [
+ /* operators = [
       {key: '*', operation: function(a, b) { return a * b}},
       {key: '/', operation: function(a, b) { return a / b}},
       {key: '-', operation: function(a, b) { return a - b}},
-      {key: '+', operation: function(a, b) { return a + b}}];
+      {key: '+', operation: function(a, b) { return a + b}}];*/
+
   operatorIterator =  function(ops){
     var index = 0;
     var myops = ops;
@@ -16,6 +20,11 @@ export class Welcome {
       return myops[index++];
     }
   };
+
+  constructor(dep) {
+    this.dep = dep;
+    this.operators = dep.makeOpeators();
+  }
   
   addNumber(i){
     if (Number(this.currentNumber) && this.currentNumber > 0)
